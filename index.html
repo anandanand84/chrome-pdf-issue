@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    Test
+  </title>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+    .page-num {
+        position: absolute;
+    }
+    @page {
+      size : Letter;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+ <script type="text/javascript">
+    window.totalPages = 500;
+    window.createPageNumberElement = function(location, page, total ) {
+      var parentDiv = document.createElement('div');
+      parentDiv.classList.add('page-num');
+      parentDiv.style.top = location + 'mm';
+      var childSpan = document.createElement('span');
+      childSpan.textContent =' Page ' + (page) + ' of '+totalPages;
+      parentDiv.appendChild(childSpan);
+      return parentDiv;
+    }
+    window.addPageNumbers = function() {
+      var start = 0;
+      var delta = 279.40
+      for (var i = 1; i < totalPages+1; ++i) {
+        var height = (start + (i - 1) * delta);
+        document.body.appendChild(createPageNumberElement(height, i, totalPages));
+      }
+      return true;
+    }
+    window.addPageNumbers();
+  </script>
+</body>
+</html>
